@@ -10,10 +10,10 @@ from FileUtilities.DirectoryProcessor import gather_files_in_path
 
 log = logging.getLogger(__name__)
 
-class RSEGameLoader(object):
+class RSEGameData(object):
     """Utility class to load a game from a directory and load/calculate associated settings, parameters and find resources"""
     def __init__(self):
-        super(RSEGameLoader, self).__init__()
+        super(RSEGameData, self).__init__()
 
         self.game_path: str = ""
         self.game_name: str = ""

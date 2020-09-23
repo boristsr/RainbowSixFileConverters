@@ -6,7 +6,7 @@ import logging
 from os import path
 
 from RainbowFileReaders.CXPMaterialPropertiesReader import load_relevant_cxps, get_cxp_definition
-from RainbowFileReaders.RSEGameLoader import RSEGameLoader
+from RainbowFileReaders.RSEGameData import RSEGameData
 from RainbowFileReaders.RSBImageReader import RSBImageFile
 from RainbowFileReaders.R6Settings import restore_original_texture_name
 from FileUtilities.DirectoryUtils import gather_files_in_path
@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 #Load Game
 def convert_game_images(game_path):
     """Converts all images for a given game path, including mods"""
-    gameloader = RSEGameLoader()
+    gameloader = RSEGameData()
     gameloaded = gameloader.load_game(game_path)
     if gameloaded is False:
         log.error("Failed to load game path")
