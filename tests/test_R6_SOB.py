@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.CRITICAL)
 class R6SOBTests(unittest.TestCase):
     """Test R6 SOBs"""
 
-    def check_sections_valid(self, loadedSOBFile):
+    def check_sections_valid(self, loadedSOBFile: SOBModelReader.SOBModelFile):
         """Check all strings in the mapFile are as expected"""
         self.assertEqual(loadedSOBFile.header.header_begin_message.string, "BeginModel")
         self.assertEqual(loadedSOBFile.materialListHeader.material_list_string.string, "MaterialList")
