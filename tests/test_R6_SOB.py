@@ -14,13 +14,15 @@ logging.basicConfig(level=logging.CRITICAL)
 class R6SOBTests(unittest.TestCase):
     """Test R6 SOBs"""
 
-    def check_section_strings(self, loadedSOBFile):
+    def check_sections_valid(self, loadedSOBFile):
         """Check all strings in the mapFile are as expected"""
         self.assertEqual(loadedSOBFile.header.header_begin_message.string, "BeginModel")
         self.assertEqual(loadedSOBFile.materialListHeader.material_list_string.string, "MaterialList")
         self.assertEqual(loadedSOBFile.geometryListHeader.geometry_list_string.string, "GeometryList")
 
-        self.assertEqual(loadedSOBFile.footer.end_model_string.string, "EndModel", "Unexpected end of map footer string")
+        self.assertEqual(len(loadedSOBFile.geometryObjects), 1, "Unexpected number of geometry objects")
+
+        self.assertEqual(loadedSOBFile.footer.end_model_string.string, "EndModel", "Unexpected end of model footer string")
 
     def test_R6_SOB_Structure(self):
         """Tests reading an R6 SOB file, specifically ak47.sob"""
@@ -33,7 +35,7 @@ class R6SOBTests(unittest.TestCase):
 
         self.assertTrue(readSucessfullyToEOF, "Failed to read whole file")
 
-        self.check_section_strings(loadedFile)
+        self.check_sections_valid(loadedFile)
 
         self.assertEqual(loadedFile.materialListHeader.numMaterials, 7, "Unexpected number of materials in header")
 
@@ -61,4 +63,4 @@ class R6SOBTests(unittest.TestCase):
 
             self.assertTrue(readSucessfullyToEOF, "Failed to read whole file")
 
-            self.check_section_strings(loadedFile)
+            self.check_sections_valid(loadedFile)
