@@ -8,7 +8,7 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
 
-from RainbowFileReaders.RSEGameLoader import RSEGameLoader
+from RainbowFileReaders.RSEGameData import RSEGameData
 from RainbowFileReaders.R6MissionReader import R6MissionFile
 
 log = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class GameLoader(object):
     def begin_play(self):
         """Run on spawn, or on game start"""
         log.debug("Testing game loader")
-        self.game_loader: RSEGameLoader = RSEGameLoader()
+        self.game_loader: RSEGameData = RSEGameData()
         file_path = self.ask_exe_file()
         if not file_path:
             file_path = "D:/R6Data/FullGames/R6EWCD"
