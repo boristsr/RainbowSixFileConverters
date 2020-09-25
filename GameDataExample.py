@@ -2,7 +2,7 @@
 
 import logging
 
-from RainbowFileReaders.RSEGameLoader import RSEGameLoader
+from RainbowFileReaders.RSEGameData import RSEGameData
 from RainbowFileReaders.R6MissionReader import R6MissionFile
 from FileUtilities.Settings import load_settings
 
@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == "__main__":
     settings = load_settings()
-    game = RSEGameLoader()
+    game = RSEGameData()
     game.load_game(settings["gamePath"])
     game.print_game_info()
 
